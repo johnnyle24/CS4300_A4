@@ -43,21 +43,22 @@ while(1)
 
             resolvents = CS4300_resolve(clauses(i), clauses(j))
 
-            if (CS4300_containsEmpty(resolvents))
+            if (CS4300_containsEmpty(resolvents)) % check if one of resolvent's clauses is empty
                 resolution = true;
                 break;
             end
 
-            new = CS4300_combineClauses(new, resolvents); % Fix this
+            new = CS4300_combineClauses(new, resolvents); % Add any new clauses to new
 
         end
 
     end
 
-    if (CS4300_subset(new, clauses))
+    if (CS4300_subset(new, clauses)) % check if all of new's clauses are in clauses
         resolution = false;
+        break;
     end
-    clauses = CS4300_combineClauses(clauses, new);
+    clauses = CS4300_combineClauses(clauses, new); % add all of the new clauses to clauses
     
 end
         

@@ -20,14 +20,6 @@ function resolvents = CS4300_resolve(C1,C2)
 %     Fall 2016
 %
 
-
-
-%%%%%%%%%
-%
-% Do fancy things with C1 and C2. See pg. 216, fig. 7.12
-%
-%%%%%%%%
-
 resolvents = [100];
 
 numResolvents = 0;
@@ -48,7 +40,8 @@ for i = 1:length(C1)
 end
 
 
-% resolvents = CS4300_equalDeps(resolvents);
+% resolvents = CS4300_equalDeps(resolvents); This method checks for any
+% duplicate clauses
 
 
 
