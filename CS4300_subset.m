@@ -18,3 +18,5 @@ function subset = CS4300_subset(new, clauses)
 %     UU
 %     Fall 2016
 %
+
+subset = false;

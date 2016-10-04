@@ -17,3 +17,5 @@ function empty = CS4300_containsEmpty(resolvents)
 %     UU
 %     Fall 2016
 %
+
+empty = false;

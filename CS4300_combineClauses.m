@@ -19,3 +19,5 @@ function combinedClauses = CS4300_combineClauses(clauses, new)
 %     UU
 %     Fall 2016
 %
+
+combinedClauses = [100];
