@@ -35,6 +35,14 @@ for i = 1:length(new)
        equal = true;
        found = true;
        for k = 1:length(current(j).clauses)
+           c1 = new(i).clauses(k);
+           
+           if(c1 == -1)
+               disp('here');
+           end
+           
+                  
+           c2 = current(j).clauses(k);
            if(k > length(current(j).clauses) || k > length(new(i).clauses) || new(i).clauses(k) ~= current(j).clauses(k))
                equal = false;
                break;
