@@ -27,40 +27,41 @@ function resolution = CS4300_resolution(KB,a)
 %
 %  Do something here with "KB" and "a" to generate clauses
 %
-%%%%%%%%%%%%%
+%%%%%%%%%%%%
 
 clauses = []; % The set of clauses in the CNF rep of KB ^ ~a
 
 new = [];
 
-resolution = 0;
+resolvents = [100];
 
 while(1)
     
-    for i = 1:size(clauses)
-        resolvents = CS4300_resolve(clauses(i), clauses(i+1));
-        if(isEmpty(resolvents))
-            resolution = 1; % Sets the return value to be true
-            break;
+    for i = 1:length(clauses)
+
+        for j = 1:length(clauses)
+
+            resolvents = CS4300_resolve(clauses(i), clauses(j))
+
+            if (CS4300_containsEmpty(resolvents))
+                resolution = true;
+                break;
+            end
+
+            new = CS4300_combineClauses(new, resolvents); % Fix this
+
         end
-        
-        new = new + resolvents; % Put the two arrays together, remember to fix
-        
-    end
-    
-    
-    check = 1;
-    for j = 1:size(new)
-        % if new(i) is not inside clauses, set check to 0
+
     end
 
-    if (check==1)
-        resolution = 0; % Not necessary but just in case
-        break;
+    if (CS4300_subset(new, clauses))
+        resolution = false;
     end
+    clauses = CS4300_combineClauses(clauses, new);
     
-    clauses = clauses + new; % Put the two arrays together, remember to fix
 end
+        
+        
         
         
         

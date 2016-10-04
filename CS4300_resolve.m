@@ -26,9 +26,29 @@ function resolvents = CS4300_resolve(C1,C2)
 %
 % Do fancy things with C1 and C2. See pg. 216, fig. 7.12
 %
-%%%%%%%%%
+%%%%%%%%
 
-resolvents = C1 + C2;
+resolvents = [100];
+
+numResolvents = 0;
+
+for i = 1:length(C1)
+    
+    for j = 1:length(C2)
+        if (C1(i) == -C2(j))
+            R = [C1(1:i-1), C1(i+1:end), C2(i:j-1), C2(j+1:end)];
+            
+            numResolvents = numResolvents + 1;
+            
+            resolvents(numResolvents).clauses = R;
+        end
+        
+    end
+    
+end
+
+
+% resolvents = CS4300_equalDeps(resolvents);
 
 
 
