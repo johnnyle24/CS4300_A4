@@ -1,5 +1,5 @@
 function resolvents = CS4300_resolve(C1,C2)
-% CS4300_RTP - resolution theorem prover
+% CS4300_resolve - outputs the possible clauses from the two clauses given
 % On input:
 %     C1: First input clause
 %     C2: Second input clause
