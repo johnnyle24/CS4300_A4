@@ -14,6 +14,6 @@ function results = CS4300_A4_Driver()
      DP(3).clauses = [-3];
      thm(1).clauses = [1];
      vars = [1,2,3];
-     resolution = CS4300_resolution(DP, thm, vars);
+     resolution = CS4300_RTP(DP, thm, vars);
      disp('Done');
 end

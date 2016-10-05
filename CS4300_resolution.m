@@ -1,5 +1,5 @@
-function resolution = CS4300_RTP(KB,thm,vars)
-% CS4300_resolution - resolution theorem
+function Sip = CS4300_RTP(KB,thm,vars)
+% CS4300_RTP - resolution theorem
 % On input:
 %     KB: knowledge base, a sentence in propositional logic
 %     a: query, a sentence in propositional logic
@@ -46,7 +46,7 @@ new = [];
 
 resolvents = [];
 
-resolution = [];
+Sip = [];
 
 while(1)
     
@@ -59,7 +59,7 @@ while(1)
             resolvents = CS4300_resolve(c1, c2);
 
             if (CS4300_containsEmpty(resolvents)) % check if one of resolvent's clauses is empty
-                resolution = [];
+                Sip = [];
                 return;
             end
 
@@ -78,7 +78,7 @@ while(1)
     clauses = CS4300_combineClauses(clauses, new); % add all of the new clauses to clauses
     
     if(length(temp) == length(clauses))
-       resolution = thm;
+       Sip = thm;
        break
     end 
 end
