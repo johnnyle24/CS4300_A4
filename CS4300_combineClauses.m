@@ -7,13 +7,12 @@ function combinedClauses = CS4300_combineClauses(current, new)
 %     combinedClauses: result of checking if every clause in new is in
 %     clauses and adding the new ones
 % Call:  (example from Russell & Norvig, p. 252)
-%     DP(1).clauses = [-1,2,3,4];
-%     DP(2).clauses = [-2];
-%     DP(3).clauses = [-3];
-%     DP(4).clauses = [1];
-%     thm = [4];
-%     vars = [1,2,3,4];
-%     Sr = CS4300_resolve(DP,thm);
+%     current(1).clauses = [-1,2,3,4];
+%     current(2).clauses = [-2];
+%     current(3).clauses = [-3];
+%     current(4).clauses = [1];
+%     new(1).clauses = [5,6];
+%     CC = CS4300_combineClauses(current,new);
 % Author:
 %     Johnny Le and Trung Le
 %     UU

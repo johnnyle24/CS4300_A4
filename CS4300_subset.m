@@ -6,13 +6,12 @@ function subset = CS4300_subset(new, clauses)
 % On output:
 %     subset: result of checking if every clause in new is in clauses
 % Call:  (example from Russell & Norvig, p. 252)
-%     DP(1).clauses = [-1,2,3,4];
-%     DP(2).clauses = [-2];
-%     DP(3).clauses = [-3];
-%     DP(4).clauses = [1];
-%     thm = [4];
-%     vars = [1,2,3,4];
-%     Sr = CS4300_resolve(DP,thm);
+%     new(1).clauses = [-1,2,3,4];
+%     new(2).clauses = [-2];
+%     new(3).clauses = [-3];
+%     new(4).clauses = [1];
+%     clauses(1).clauses = [4];
+%     result = CS4300_subset(new,clauses);
 % Author:
 %     Johnny Le and Trung Le
 %     UU

@@ -80,9 +80,10 @@ while(1)
     if(length(temp) == length(clauses))
        resolution = thm;
        break
-    end
-    
+    end 
 end
+
+
         
         
         

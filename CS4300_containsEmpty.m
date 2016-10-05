@@ -5,13 +5,11 @@ function empty = CS4300_containsEmpty(resolvents)
 % On output:
 %     empty: result of checking if an empty clause exists
 % Call:  (example from Russell & Norvig, p. 252)
-%     DP(1).clauses = [-1,2,3,4];
-%     DP(2).clauses = [-2];
-%     DP(3).clauses = [-3];
-%     DP(4).clauses = [1];
-%     thm = [4];
-%     vars = [1,2,3,4];
-%     Sr = CS4300_resolve(DP,thm);
+%     resolvents(1).clauses = [-1,2,3,4];
+%     resolvents(2).clauses = [-2];
+%     resolvents(3).clauses = [-3];
+%     resolvents(4).clauses = [1];
+%     Sr = CS4300_containsEmpty(resolvents);
 % Author:
 %     Johnny Le and Trung Le
 %     UU
