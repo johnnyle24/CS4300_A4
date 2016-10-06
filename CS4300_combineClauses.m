@@ -30,11 +30,11 @@ for l = 1:length(current)
 end
 
 for i = 1:length(new)
-   for j = 1:length(current)
+   for j = 1:length(combinedClauses)
        equal = true;
        found = true;
-       for k = 1:length(current(j).clauses)
-           if(k > length(current(j).clauses) || k > length(new(i).clauses) || new(i).clauses(k) ~= current(j).clauses(k))
+       for k = 1:length(combinedClauses(j).clauses)
+           if(k > length(combinedClauses(j).clauses) || k > length(new(i).clauses) || new(i).clauses(k) ~= combinedClauses(j).clauses(k))
                equal = false;
                break;
            end
