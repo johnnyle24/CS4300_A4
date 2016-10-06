@@ -78,7 +78,7 @@ while(1)
     clauses = CS4300_combineClauses(clauses, new); % add all of the new clauses to clauses
     
     if(length(temp) == length(clauses))
-       Sip = thm;
+       Sip = clauses;
        break
     end 
 end
