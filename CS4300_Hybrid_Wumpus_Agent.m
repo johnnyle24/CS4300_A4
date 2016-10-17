@@ -19,9 +19,9 @@ end
 
 %if stench
 if(percept(1))
-    CS4300_Tell(KB, stench at x,y)
+    CS4300_Tell(KB, CS4300_Get_Index(x,y,1,2));
 else
-    CS4300_Tell(KB, not stench at x,y)
+    CS4300_Tell(KB, CS4300_Get_Index(x,y,-1,2));
 end
 
 
