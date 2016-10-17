@@ -1,0 +1,6 @@
+function action = CS4300_Make_Percept_Sentence(perecept, t)
+%Tell the knowledge base what the agent perceives
+
+
+end
+
