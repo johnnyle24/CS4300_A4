@@ -1,0 +1,40 @@
+function result = CS4300_Convert_Imply_To_CNF(c1, c2)
+%{ 
+ CS4300_Convert_Imply_To_CNF - convert c1 implies c2 to CNF
+   Abstract:
+    b11 -> (p12 V p21) = (-b11 V p12 V p21) A (-p12 V b11) ^ (p21 V b11)
+    c1 = [17]
+    c2 = [
+   
+ On input:
+     percept_sentence: 1 disjunctive clause to be added
+ Call:
+     CS4300_Ask(kb, [-1,2]);
+ Author:
+     Trung Le and Johnny Le
+     UU
+     Fall 2016
+
+%}
+%Pits [1,16]
+%Breeze [17,32]
+%Stench [33,48]
+%Wumpus [49,65]
+%Gold [66, 81]
+
+%Type
+%0 Pits
+%1 Breeze
+%2 Stench
+%3 Wumpus
+%4 Gold
+vars = [1,2];
+rtp_result = CS4300_RTP(KB,sentence,vars);
+
+if(length(rtp_result) == 0)
+    result = 1; 
+else
+    result = 0;
+end
+
+end

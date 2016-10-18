@@ -45,11 +45,11 @@ CLIMB = 6;
 if(~exist(KB))
     global KB;
     %Initially no pit and no wumpus in 1,1
-    KB = CS4300_Initialize_KB();
-    
-    global x = 1;
-    global y = 1;
-    global orientation = 0;
+    KB(1).clauses = [-1]; %no pit
+    KB(2).clauses = [-49]; %no wumpus
+    global x;
+    global y;
+    global orientation;
     global visited;
     global action;
     global plan;

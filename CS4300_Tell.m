@@ -1,10 +1,12 @@
-function CS4300_Tell(KB, percept_sentence)
+function result = CS4300_Tell(KB, percept_sentence)
 % CS4300_Tell - Adds percept sentence to knowledge base
 % On input:
 %     sentences (CNF data structure): array of conjuctive clauses
 %       (i).clauses
 %           each clause is a list of integers (- for negated literal)
 %     percept_sentence: 1 disjunctive clause to be added
+% On output:
+%       returns the update KB
 % Call:
 %     CS4300_tell(kb, [-1,2]);
 % Author:
@@ -14,7 +16,8 @@ function CS4300_Tell(KB, percept_sentence)
 %
 
 num_clauses = length(KB);
-KB(num_clauses + 1) = percept_sentence;
+result = KB;
+result(num_clauses + 1) = percept_sentence;
 
 
 
