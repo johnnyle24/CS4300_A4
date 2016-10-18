@@ -1,6 +1,41 @@
 function action = CS4300_Hybrid_Wumpus_Agent(percept)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+% CS4300_Hybrid_Wumpus_Agent - KB logic agent 
+%    
+% On input:
+%     percept (1x5 Boolean vector): percept values
+%      (1): Stench
+%      (2): Pit
+%      (3): Glitters
+%      (4): Bumped
+%      (5): Screamed
+% On output:
+%     action (int): action selected by agent
+%       FORWARD = 1;
+%       ROTATE_RIGHT = 2;
+%       ROTATE_LEFT = 3;
+%       GRAB = 4;   
+%       SHOOT = 5;  
+%       CLIMB = 6;  
+% Call:
+%     a = CS4300_Example1([0,1,0,0,0]);
+% Author:
+%     T. Henderson
+%     UU
+%     Summer 2015
+%
+
+%Type
+%0 Pits
+%1 Breeze
+%2 Stench
+%3 Wumpus
+
+FORWARD = 1;
+ROTATE_RIGHT = 2;
+ROTATE_LEFT = 3;
+GRAB = 4;
+SHOOT = 5;
+CLIMB = 6;
 
 if(~exist(KB))
     global KB;
@@ -23,6 +58,19 @@ if(percept(1))
 else
     CS4300_Tell(KB, CS4300_Get_Index(x,y,-1,2));
 end
+
+%if breeze
+if(percept(2))
+    CS4300_Tell(KB, CS4300_Get_Index(x,y,1,1));
+else
+    CS4300_Tell(KB, CS4300_Get_Index(x,y,-1,1));
+end
+
+%if glitter
+if(percept(3))
+   action = GRAB;
+end
+
 
 
 
