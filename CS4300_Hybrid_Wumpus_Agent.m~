@@ -1,4 +1,5 @@
 function action = CS4300_Hybrid_Wumpus_Agent(percept)
+import java.util.Queue;
 % CS4300_Hybrid_Wumpus_Agent - KB logic agent 
 %    
 % On input:
@@ -49,16 +50,33 @@ if(~exist(KB))
     
     persistent local_x;
     local_x = 1;
+    
     persistent local_y;
     local_y = 1;
+    
     persistent local_orientation;
     local_orientation = 0;
-    global visited;
-    global action;
-    global plan;
+    
+    persistent visited;
+    visited(1).square = [1,1];
+    
+    persistent fringe_squares;
+    fringe_squares(1).square = [1,2];
+    fringe_squares(2).square = [2,1];
+    
+    persistent fringe_squares_index;
+    fringe_squares_index = 1;
+    
+    persistent action;
+    
+    persistent plan;
+    plan = Queue();
+    
+    persistent succeed;
+    succeed = 0;
 end
 
-%update x,y orientation, visited based on action
+%update x,y orientation, visited, fringe_squares based on action
 
 %if stench
 if(percept(1))
@@ -77,13 +95,56 @@ end
 %if glitter
 if(percept(3))
    action = GRAB;
+   succeed = 1;
    return;
+   
 %plan is non empty
-elseif
-    %action = plan.pop
-elseif
-    
+elseif(~plan.isEmpty)
+    action = plan.remove();
+    return
 end
+       
+%check fringe squares
+%check (i,j) if(ask(kb, (-Pij A -Wij)) || !ask(kb, (Pij V Wij))
+%then plan = A* search from (x,y) to (i,j)
+%action = action.pop
+    
+square = fringe_squares(fringe_squares_index).square;
+fringe_squares_index = fringe_squares_index + 1; %check valid index
+
+pit_exist = CS4300_Get_Index(square(1),square(2),1,0);
+pit_not_exist = CS4300_Get_Index(square(1),square(2),-1,0);
+wumpus_exist = CS4300_Get_Index(square(1),square(2),1,3);
+wumpus_not_exist = CS4300_Get_Index(square(1),square(2),-1,3);
+
+sentence1(1).clause = pit_not_exist;
+sentence1(2).clause = wumpus_not_exist;
+sentence2(1).clause = pit_exist;
+sentence2(2).clause = wumpus_exist;
+
+if(CS4300_Ask(KB,sentence1) || ~CS4300_Ask(KB,sentence2))
+   
+        
+else
+    %action = random action
+    x = randi([0, 2]);
+
+    switch x
+        case 0
+            action = FORWARD;
+        case 1
+            action = ROTATE_RIGHT;
+        case 2
+            action = ROTATE_LEFT;
+end
+
+
+    
+    
+    
+    
+    
+
 
 
 

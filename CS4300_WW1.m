@@ -60,6 +60,7 @@ while step<max_steps&done==0
             score = score - 10;
         case 6
             score = score;
+            agent.gold = 1;
     
     [board,agent,bumped,screamed] = CS4300_update(board,agent,action);
     trace(step+1).agent = agent;

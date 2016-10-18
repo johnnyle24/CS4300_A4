@@ -1,4 +1,5 @@
 function action = CS4300_Hybrid_Wumpus_Agent(percept)
+import java.util.Queue;
 % CS4300_Hybrid_Wumpus_Agent - KB logic agent 
 %    
 % On input:
@@ -49,46 +50,42 @@ if(~exist(KB))
     
     persistent local_x;
     local_x = 1;
+    
     persistent local_y;
     local_y = 1;
+    
     persistent local_orientation;
     local_orientation = 0;
-    global visited;
-    global action;
-    global plan;
+    
+    persistent visited;
+    visited(1).square = [1,1];
+    
+    persistent fringe_squares;
+    fringe_squares(1).square = [1,2];
+    fringe_squares(2).square = [2,1];
+    
+    persistent fringe_squares_index;
+    fringe_squares_index = 1;
+        
+    persistent plan;
+    plan = Queue();
+    
+    persistent succeed;
+    succeed = 0;
+    
+    persistent time;
+    time = 0;
 end
 
-%update x,y orientation, visited based on action
 
-%if stench
-if(percept(1))
-    CS4300_Tell(KB, CS4300_Get_Index(x,y,1,2));
-else
-    CS4300_Tell(KB, CS4300_Get_Index(x,y,-1,2));
-end
 
-%if breeze
-if(percept(2))
-    CS4300_Tell(KB, CS4300_Get_Index(x,y,1,1));
-else
-    CS4300_Tell(KB, CS4300_Get_Index(x,y,-1,1));
-end
 
-%if glitter
-if(percept(3))
-   action = GRAB;
-   return;
-%plan is non empty
-%elseif
-    %action = plan.pop
-%check fringe squares
-%elseif
-    %check (i,j) if(ask(kb, (-Pij A -Wij)) || !ask(kb, (Pij V Wij))
-    %   then plan = A* search from (x,y) to (i,j)
-    %   action = action.pop
-%else
-    %action = random action
-end
+    
+    
+    
+    
+    
+
 
 
 
