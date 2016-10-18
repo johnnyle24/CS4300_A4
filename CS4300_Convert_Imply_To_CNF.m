@@ -19,18 +19,7 @@ function result = CS4300_Convert_Imply_To_CNF(c1, c2)
      Fall 2016
 
 %}
-%Pits [1,16]
-%Breeze [17,32]
-%Stench [33,48]
-%Wumpus [49,65]
-%Gold [66, 81]
 
-%Type
-%0 Pits
-%1 Breeze
-%2 Stench
-%3 Wumpus
-%4 Gold
 
 len = length(c2) + 1;
 

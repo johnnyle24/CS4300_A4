@@ -28,38 +28,6 @@ kb_counter = 4;
 %Initialize KB for breezes and pits
 for y = 1:4
     for x = 1:4
-        c1 = CS4300_Get_Index(x,y,1,2);
-        c2_counter = 1;
-        c2 = [];
-        if(y+1 <= 4)
-            c2(c2_counter) = CS4300_Get_Index(x,y+1,1,3);
-            c2_counter = c2_counter + 1;
-        end
-        if(y-1 > 0)
-            c2(c2_counter) = CS4300_Get_Index(x,y-1,1,3);
-            c2_counter = c2_counter + 1;
-        end
-        if(x+1 <= 4)
-            c2(c2_counter) = CS4300_Get_Index(x+1,y,1,3);
-            c2_counter = c2_counter + 1;
-        end
-        if(x-1 > 0)
-            c2(c2_counter) = CS4300_Get_Index(x-1,y,1,3);
-            c2_counter = c2_counter + 1;
-        end
-        
-        res = CS4300_Convert_Imply_To_CNF(c1,c2);
-        
-        for i = 1:length(res)
-            KB(kb_counter) = res(i);
-            kb_counter = kb_counter + 1;
-        end
-    end
-end
-
-%Initialize KB for stenches and wumpus
-for y = 1:4
-    for x = 1:4
         c1 = CS4300_Get_Index(x,y,1,1);
         c2_counter = 1;
         c2 = [];
@@ -77,6 +45,38 @@ for y = 1:4
         end
         if(x-1 > 0)
             c2(c2_counter) = CS4300_Get_Index(x-1,y,1,0);
+            c2_counter = c2_counter + 1;
+        end
+        
+        res = CS4300_Convert_Imply_To_CNF(c1,c2);
+        
+        for i = 1:length(res)
+            KB(kb_counter) = res(i);
+            kb_counter = kb_counter + 1;
+        end
+    end
+end
+
+%Initialize KB for stenches and wumpus
+for y = 1:4
+    for x = 1:4
+        c1 = CS4300_Get_Index(x,y,1,2);
+        c2_counter = 1;
+        c2 = [];
+        if(y+1 <= 4)
+            c2(c2_counter) = CS4300_Get_Index(x,y+1,1,3);
+            c2_counter = c2_counter + 1;
+        end
+        if(y-1 > 0)
+            c2(c2_counter) = CS4300_Get_Index(x,y-1,1,3);
+            c2_counter = c2_counter + 1;
+        end
+        if(x+1 <= 4)
+            c2(c2_counter) = CS4300_Get_Index(x+1,y,1,3);
+            c2_counter = c2_counter + 1;
+        end
+        if(x-1 > 0)
+            c2(c2_counter) = CS4300_Get_Index(x-1,y,1,3);
             c2_counter = c2_counter + 1;
         end
         

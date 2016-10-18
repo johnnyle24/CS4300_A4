@@ -47,9 +47,12 @@ if(~exist(KB))
     %Initially no pit and no wumpus in 1,1
     KB = CS4300_Initialize_KB();
     
-    global x = 1;
-    global y = 1;
-    global orientation = 0;
+    persistent local_x;
+    local_x = 1;
+    persistent local_y;
+    local_y = 1;
+    persistent local_orientation;
+    local_orientation = 0;
     global visited;
     global action;
     global plan;
@@ -74,7 +77,20 @@ end
 %if glitter
 if(percept(3))
    action = GRAB;
+   return;
+%plan is non empty
+%elseif
+    %action = plan.pop
+%check fringe squares
+%elseif
+    %check (i,j) if(ask(kb, (-Pij A -Wij)) || !ask(kb, (Pij V Wij))
+    %   then plan = A* search from (x,y) to (i,j)
+    %   action = action.pop
+%else
+    %action = random action
 end
+
+
 
 
 
