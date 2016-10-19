@@ -77,9 +77,19 @@ if(~exist(KB))
     time = 0;
 end
 
+    t = 0; % 0 for now
 
 
-
+    CS4300_Tell(KB, CS4300_Make_Percept_Sentence(percept, t));
+    
+    % must define G for gold
+    
+    if (CS4300_Ask(KB, G)
+       % grab and use A*star_man to escape 
+    end
+    if(isEmpty(plan))
+        
+    end
     
     
     
