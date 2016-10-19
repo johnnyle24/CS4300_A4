@@ -55,14 +55,20 @@ while step<max_steps&done==0
         case 3
             score = score - 1;
         case 4 
-            score = score + 100;
+            score = score;
         case 5
             score = score - 10;
         case 6
-            score = score;
+            score = score + 1000;
             agent.gold = 1;
     
     [board,agent,bumped,screamed] = CS4300_update(board,agent,action);
+    
+    %update agent status
+    local_x = agent.x;
+    local_y = agent.y;
+    local_dir = agent.dir;
+    
     trace(step+1).agent = agent;
     trace(step+1).board = board;
     trace(step+1).action = action;

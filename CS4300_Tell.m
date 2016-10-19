@@ -20,7 +20,7 @@ result = KB;
 result(num_clauses + 1) = percept_sentence;
 
 
-
+%TODO: Check for duplicates
 
 
 end

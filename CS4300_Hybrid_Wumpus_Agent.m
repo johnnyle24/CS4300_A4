@@ -5,7 +5,7 @@ import java.util.Queue;
 % On input:
 %     percept (1x5 Boolean vector): percept values
 %      (1): Stench
-%      (2): Pit
+%      (2): Breeze
 %      (3): Glitters
 %      (4): Bumped
 %      (5): Screamed
@@ -56,64 +56,82 @@ if(~exist(KB))
     %Initially no pit and no wumpus in 1,1
     KB = CS4300_Initialize_KB();
     
-    persistent local_x;
+    global local_x;
     local_x = 1;
     
-    persistent local_y;
+    global local_y;
     local_y = 1;
     
-    persistent local_orientation;
-    local_orientation = 0;
+    global local_dir;
+    local_dir = 0;
     
     persistent visited;
-    visited(1).square = [1,1];
+    %0  not visited
+    %1  visited
+    %initially (1,1) visited
+    visited = [0,0,0,0;0,0,0,0;0,0,0,0;1,0,0,0];
     
-    persistent fringe_squares;
-    fringe_squares(1).square = [1,2];
-    fringe_squares(2).square = [2,1];
+    persistent board;
+    %-1 dont know
+    %0  safe/no pit or wumpus
+    %1  not safe
+    board = [-1,-1,-1,-1;-1,-1,-1,-1;-1,-1,-1,-1;0,-1,-1,-1];
     
-    persistent fringe_squares_index;
-    fringe_squares_index = 1;
-        
+    persistent frontier;
+    %frontier:  neighbors of whats been visited
+    %0  not on frontier
+    %1  on frontier
+    frontier = [0,0,0,0;0,0,0,0;1,0,0,0;0,1,0,0];
+    
     persistent plan;
     plan = Queue();
     
     persistent succeed;
     succeed = 0;
     
-    persistent time;
-    time = 0;
+end
+
+KB = CS4300_Tell(KB, CS4300_Make_Percept_Sentence(percept,local_x,local_y));
+
+board = CS4300_safe(local_x,local_y,KB,board);
+
+glitter = percept(3);
+if(glitter)
+   plan.add(GRAB);
+   plan.add(CS4300_Wumpus_A_star(board, [local_x, local_y, local_dir], [1,1,0], 'CS4300_A_star_Man'));
+   plan.add(CLIMB);
 end
 
 
-    CS4300_Tell(KB, CS4300_Make_Percept_Sentence(percept, t));
-    
-    % must define G for gold
-    
-    if (CS4300_Ask(KB, G)
-       % grab and use A*star_man to escape 
-    end
-    if(isEmpty(plan))
-        % possible wumpus or pit
-    end
-    if(isEmpty(plan) && CS4300_Ask(KB, query) %wumpus number of current location, make a map
-        
-    end
-    
-    if(isEmpty(plan)
-       %check for a safest and then choose one 
-    end
-    
-    if(isEmpty(plan))
-       plan = CS4300_A_star_man(current, destination); 
-    end
-    
-    action = pop(plan);
-    
-    CS4300_Tell(KB, CS4300_make_action_sentence(action, I);
-    
-    t = t + 1;
 
+
+%{
+CS4300_Tell(KB, CS4300_Make_Percept_Sentence(percept,x,y));
+
+% must define G for gold
+
+if (CS4300_Ask(KB, G)
+   % grab and use A*star_man to escape 
+end
+if(isEmpty(plan))
+    % possible wumpus or pit
+end
+if(isEmpty(plan) && CS4300_Ask(KB, query) %wumpus number of current location, make a map
+
+end
+
+if(isEmpty(plan)
+   %check for a safest and then choose one 
+end
+
+if(isEmpty(plan))
+   plan = CS4300_A_star_man(current, destination); 
+end
+
+action = pop(plan);
+
+CS4300_Tell(KB, CS4300_make_action_sentence(action, I);
+%}
 
 end
 

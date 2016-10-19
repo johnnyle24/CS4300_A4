@@ -51,7 +51,7 @@ for y = 1:4
         res = CS4300_Convert_Imply_To_CNF(c1,c2);
         
         for i = 1:length(res)
-            KB(kb_counter) = res(i);
+            KB(kb_counter).clauses = res(i);
             kb_counter = kb_counter + 1;
         end
     end
@@ -83,7 +83,7 @@ for y = 1:4
         res = CS4300_Convert_Imply_To_CNF(c1,c2);
         
         for i = 1:length(res)
-            KB(kb_counter) = res(i);
+            KB(kb_counter).clauses = res(i);
             kb_counter = kb_counter + 1;
         end
     end
