@@ -42,6 +42,9 @@ GRAB = 4;
 SHOOT = 5;
 CLIMB = 6;
 
+global actual_board;
+actual_board = board;
+
 while step<max_steps&done==0
     step = step + 1;
     percept = CS4300_get_percept(board,agent,bumped,screamed);
