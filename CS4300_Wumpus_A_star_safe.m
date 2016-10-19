@@ -1,5 +1,5 @@
-function [solution,nodes]  = CS4300_Wumpus_A_star_safe(board,initial_state,...
-    goal_state,h_name,safe)
+function [solution,nodes]  = CS4300_Wumpus_A_star(board,initial_state,...
+    goal_state,h_name)
 % CS4300_Wumpus_A_star - A* algorithm for Wumpus world
 % On input:
 %     board (4x4 int array): Wumpus board layot
@@ -70,23 +70,29 @@ while 1==1
     for action = 1:3
         next_state = CS4300_Wumpus_transition(nodes(node).state,...
             action,board);
-        if next_state(1)>0 ...
+        
+        tempx = next_state(1);
+        tempy = CS4300_conversion(next_state(2));
+        
+        if tempx>0 ...
             & CS4300_Wumpus_new_state(next_state,frontier,explored,...
                 nodes)
             
+            if(safe(tempy,tempx) == 0)
+                num_nodes = num_nodes + 1;
+                nodes(num_nodes).parent = node;
+                nodes(num_nodes).level = nodes(node).level + 1;
+                nodes(num_nodes).state = next_state;
+                nodes(num_nodes).action = action;
+                nodes(num_nodes).g = nodes(node).g + 1;
+                nodes(num_nodes).h = feval(h_name,next_state,goal_state);
+                nodes(num_nodes).cost = nodes(num_nodes).g...
+                    + nodes(num_nodes).h;
+                nodes(num_nodes).children = [];
+                nodes(node).children = [nodes(node).children,num_nodes];
+                next_list = [num_nodes,next_list];
+            end
             
-            num_nodes = num_nodes + 1;
-            nodes(num_nodes).parent = node;
-            nodes(num_nodes).level = nodes(node).level + 1;
-            nodes(num_nodes).state = next_state;
-            nodes(num_nodes).action = action;
-            nodes(num_nodes).g = nodes(node).g + 1;
-            nodes(num_nodes).h = feval(h_name,next_state,goal_state);
-            nodes(num_nodes).cost = nodes(num_nodes).g...
-                + nodes(num_nodes).h;
-            nodes(num_nodes).children = [];
-            nodes(node).children = [nodes(node).children,num_nodes];
-            next_list = [num_nodes,next_list];
         end
     end
     frontier = CS4300_Astar_priority_queue(next_list,frontier,nodes);
