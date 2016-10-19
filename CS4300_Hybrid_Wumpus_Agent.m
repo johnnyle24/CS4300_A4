@@ -88,18 +88,25 @@ end
        % grab and use A*star_man to escape 
     end
     if(isEmpty(plan))
+        % possible wumpus
+    end
+    if(isEmpty(plan) && CS4300_Ask(KB, %wumpus number of current location, make a map)
         
     end
     
+    if(isEmpty(plan)
+       %check for a safest and then choose one 
+    end
     
+    if(isEmpty(plan))
+       plan = CS4300_A_star_man(current, destination); 
+    end
     
+    action = pop(plan);
     
+    CS4300_Tell(KB, CS4300_make_action_sentence(action, I);
     
-
-
-
-
-
+    t = t + 1;
 
 
 end
