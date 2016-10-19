@@ -16,8 +16,13 @@ function result = CS4300_Tell(KB, percept_sentence)
 %
 
 num_clauses = length(KB);
+num_clauses = num_clauses + 1;
 result = KB;
-result(num_clauses + 1) = percept_sentence;
+for i = 1:length(percept_sentence)
+    result(num_clauses).clauses = percept_sentence(i).clauses;
+    num_clauses = num_clauses + 1;
+end
+
 
 
 %TODO: Check for duplicates

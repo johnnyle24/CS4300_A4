@@ -98,7 +98,7 @@ board = CS4300_safe(local_x,local_y,KB,board);
 glitter = percept(3);
 if(glitter)
    plan.add(GRAB);
-   plan.add(CS4300_Wumpus_A_star(board, [local_x, local_y, local_dir], [1,1,0], 'CS4300_A_star_Man'));
+   plan.add(CS4300_Wumpus_A_star_safe(board, [local_x, local_y, local_dir], [1,1,0], 'CS4300_A_star_Man', board));
    plan.add(CLIMB);
 end
 
