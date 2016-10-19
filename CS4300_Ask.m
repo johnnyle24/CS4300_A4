@@ -1,7 +1,7 @@
 function result = CS4300_Ask(KB, sentence)
 % CS4300_Ask - checks percept_sentence against KB and returns true or false
 % On input:
-%     sentences (CNF data structure): array of conjuctive clauses
+%     sentences (CNF data structure): array of conjunctive clauses
 %       (i).clauses
 %           each clause is a list of integers (- for negated literal)
 %     percept_sentence: 1 disjunctive clause to be added

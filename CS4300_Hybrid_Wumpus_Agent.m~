@@ -43,6 +43,14 @@ GRAB = 4;
 SHOOT = 5;
 CLIMB = 6;
 
+t = 0;
+
+% plan = java.util.PriorityQueue;
+% 
+% plan.add({1, 0});
+% 
+% plan = (100, 1);
+
 if(~exist(KB))
     global KB;
     %Initially no pit and no wumpus in 1,1
@@ -77,8 +85,6 @@ if(~exist(KB))
     time = 0;
 end
 
-    t = 0; % 0 for now
-
 
     CS4300_Tell(KB, CS4300_Make_Percept_Sentence(percept, t));
     
@@ -88,9 +94,9 @@ end
        % grab and use A*star_man to escape 
     end
     if(isEmpty(plan))
-        % possible wumpus
+        % possible wumpus or pit
     end
-    if(isEmpty(plan) && CS4300_Ask(KB, %wumpus number of current location, make a map)
+    if(isEmpty(plan) && CS4300_Ask(KB, query) %wumpus number of current location, make a map
         
     end
     
@@ -104,17 +110,9 @@ end
     
     action = pop(plan);
     
-    CS4300_Tell(KB, 
+    CS4300_Tell(KB, CS4300_make_action_sentence(action, I);
     
-    
-    
-    
-    
-
-
-
-
-
+    t = t + 1;
 
 
 end
