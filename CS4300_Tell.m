@@ -21,6 +21,7 @@ temp_num = num_clauses;
 result = KB;
 temp = result;
 dup = 0;
+
 for i = 1:length(percept_sentence)
 
     for j = 1:length(result)
@@ -45,6 +46,8 @@ for i = 1:length(percept_sentence)
         %do nothing
     else
         result = temp;
+        result(1).vars = [result(1).vars,percept_sentence(i).clauses];
+        result(1).vars = unique(result(1).vars);
     end
     
     

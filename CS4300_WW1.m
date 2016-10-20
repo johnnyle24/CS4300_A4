@@ -1,4 +1,4 @@
-function [score,trace] = CS4300_WW1(max_steps,f_name,board)
+function [score,trace,shot_count,scream_count] = CS4300_WW1(max_steps,f_name,board)
 % CS4300_WW1 - Wumpus World 1 simulator
 % On input:
 %     max_steps (int): maximum number of simulation steps
@@ -41,13 +41,19 @@ ROTATE_LEFT = 3;
 GRAB = 4;
 SHOOT = 5;
 CLIMB = 6;
-
+shot_counter = 0;
+scream_count = 0;
+shot_count = 0;
 
 
 while step<max_steps&done==0
     step = step + 1;
     percept = CS4300_get_percept(board,agent,bumped,screamed);
     action = feval(f_name,percept);
+    
+    if(percept(5))
+       scream_count = 1; 
+    end
     
     switch action
         case 1
@@ -58,8 +64,10 @@ while step<max_steps&done==0
             score = score - 1;
         case 4 
             score = score;
+            shot_count = 1;
         case 5
             score = score - 10;
+            
         case 6
             score = score + 1000;
             agent.gold = 1;

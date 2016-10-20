@@ -15,11 +15,15 @@ function result = CS4300_Ask(KB, sentence)
 
 % vars not used by our rtp
 
-global vars;
-vars = zeros(80);
-for i = 1:80
-    vars(i) = i;
+vars = [1];
+s = size(KB(1).vars);
+for i = 1:s(2)
+    temp = KB(1).vars;
+    vars = [vars abs(temp(i))]; 
 end
+
+vars = unique(vars);
+
 
 rtp_result = CS4300_RTP2(KB,sentence,vars);
 

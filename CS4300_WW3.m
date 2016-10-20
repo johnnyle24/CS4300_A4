@@ -33,10 +33,32 @@ board1 = [0,0,0,3;...
     0,0,0,0;...
     2,1,0,0;...
     0,0,0,0];
-[score,trace] = CS4300_WW1(max_steps,f_name,board1);
-scores(1).board = board1;
-scores(1).score = score;
-scores(1).trace = trace;
+[score,trace,shot_count,scream_count] = CS4300_WW1(max_steps,f_name,board1);
+scores1(1).board = board1;
+scores1(1).score = score;
+scores1(1).trace = trace;
+scores1(1).shc = shot_count;
+scores1(1).scc = scream_count;
+
+clear(f_name);
+
+[score,trace,shot_count,scream_count] = CS4300_WW1(max_steps,f_name,board1);
+scores1(2).board = board1;
+scores1(2).score = score;
+scores1(2).trace = trace;
+scores1(2).shc = shot_count;
+scores1(2).scc = scream_count;
+
+
+clear(f_name);
+
+[score,trace,shot_count,scream_count] = CS4300_WW1(max_steps,f_name,board1);
+scores1(3).board = board1;
+scores1(3).score = score;
+scores1(3).trace = trace;
+scores1(3).shc = shot_count;
+scores1(3).scc = scream_count;
+
 
 clear(f_name);
 
@@ -44,10 +66,34 @@ board2 = [0,0,0,1;...
     3,2,1,0;...
     0,0,0,0;...
     0,0,1,0];
-[score,trace] = CS4300_WW1(max_steps,f_name,board2);
-scores(2).board = board2;
-scores(2).score = score;
-scores(2).trace = trace;
+[score,trace,shot_count,scream_count] = CS4300_WW1(max_steps,f_name,board2);
+scores2(1).board = board2;
+scores2(1).score = score;
+scores2(1).trace = trace;
+scores2(1).shc = shot_count;
+scores2(1).scc = scream_count;
+
+
+clear(f_name);
+
+[score,trace,shot_count,scream_count] = CS4300_WW1(max_steps,f_name,board2);
+scores2(2).board = board2;
+scores2(2).score = score;
+scores2(2).trace = trace;
+scores2(2).shc = shot_count;
+scores2(2).scc = scream_count;
+
+
+
+clear(f_name);
+
+[score,trace,shot_count,scream_count] = CS4300_WW1(max_steps,f_name,board2);
+scores2(3).board = board2;
+scores2(3).score = score;
+scores2(3).trace = trace;
+scores2(3).shc = shot_count;
+scores2(3).scc = scream_count;
+
 
 clear(f_name);
 
@@ -55,7 +101,33 @@ board3 = [0,0,0,0;...
     0,0,0,0;...
     3,2,0,0;...
     0,1,0,0];
-[score,trace] = CS4300_WW1(max_steps,f_name,board3);
-scores(3).board = board3;
-scores(3).score = score;
-scores(3).trace = trace;
+[score,trace,shot_count,scream_count] = CS4300_WW1(max_steps,f_name,board3);
+scores3(1).board = board3;
+scores3(1).score = score;
+scores3(1).trace = trace;
+scores3(1).shc = shot_count;
+scores3(1).scc = scream_count;
+
+
+clear(f_name);
+
+[score,trace,shot_count,scream_count] = CS4300_WW1(max_steps,f_name,board3);
+scores3(2).board = board3;
+scores3(2).score = score;
+scores3(2).trace = trace;
+scores3(2).shc = shot_count;
+scores3(2).scc = scream_count;
+
+
+
+clear(f_name);
+
+[score,trace,shot_count,scream_count] = CS4300_WW1(max_steps,f_name,board3);
+scores3(3).board = board3;
+scores3(3).score = score;
+scores3(3).trace = trace;
+scores3(3).shc = shot_count;
+scores3(3).scc = scream_count;
+
+disp('done');
+

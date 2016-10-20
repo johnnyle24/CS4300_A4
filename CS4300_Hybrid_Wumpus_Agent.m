@@ -110,63 +110,70 @@ end
 if(shot == 0 && haveArrow == 0)
     shot = 1;
     
+%     if(percept(5) == 1)
+%         for x1 = 1:4
+%             for y1 = 1:4
+%                 sen(1).clauses = CS4300_Get_Index(y1,x1,-1,3);
+%                 KB = CS4300_Tell(KB, sen); 
+%                 sen(1).clauses = CS4300_Get_Index(y1,x1,-1,2);
+%                 KB = CS4300_Tell(KB, sen); 
+%             end
+%         end
+%     end
+    
     if(percept(5) == 1)
-        for x1 = 1:4
-            for y1 = 1:4
-                sen(1).clauses = CS4300_Get_Index(y1,x1,-1,3);
-                KB = CS4300_Tell(KB, sen); 
-                sen(1).clauses = CS4300_Get_Index(y1,x1,-1,2);
-                KB = CS4300_Tell(KB, sen); 
+        
+        for x1 = 1:size(KB, 1)
+            if(KB(x1).clauses < 48 && KB(x1).clauses > 33)
+               KB(x1).clauses = KB(x1).clauses * -1; 
             end
         end
-    end
-    
-    
-    if(local_dir == 0)
-        for inc = 1:3
-           if(local_x+inc <= 4)
-%                 sentence2(1).clauses = CS4300_Get_Index(local_x+inc, local_y, -1, 3);
-%                 KB = CS4300_Tell(KB, sentence2);
-                if(frontier(CS4300_conversion(local_y), local_x+inc) == 1)
-                    board(CS4300_conversion(local_y), local_x+inc) = 0;
-                end
-           end
+        
+        if(local_dir == 0)
+            for inc = 1:3
+               if(local_x+inc <= 4)
+    %                 sentence2(1).clauses = CS4300_Get_Index(local_x+inc, local_y, -1, 3);
+    %                 KB = CS4300_Tell(KB, sentence2);
+                    if(frontier(CS4300_conversion(local_y), local_x+inc) == 1)
+                        board(CS4300_conversion(local_y), local_x+inc) = 0;
+                    end
+               end
+            end
+        end
+        if(local_dir == 1)
+            for inc = 1:3
+               if(local_y+inc <= 4)
+    %                sentence2(1).clauses = CS4300_Get_Index(local_x, local_y+inc, -1, 3);
+    %                 KB = CS4300_Tell(KB, sentence2);
+                    if(frontier(CS4300_conversion(local_y+inc), local_x) == 1)
+                        board(CS4300_conversion(local_y+inc), local_x) = 0;
+                    end
+               end
+            end
+        end
+        if(local_dir == 2)
+            for inc = 1:3
+               if(local_x-inc >= 0)
+    %                sentence2(1).clauses = CS4300_Get_Index(local_x-inc, local_y, -1, 3);
+    %                 KB = CS4300_Tell(KB, sentence2);
+                    if(frontier(CS4300_conversion(local_y), local_x-inc) == 1)
+                        board(CS4300_conversion(local_y), local_x-inc) = 0;
+                    end
+               end
+            end
+        end
+        if(local_dir == 3)
+            for inc = 1:3
+               if(local_y-inc >= 0)
+    %                sentence2(1).clauses = CS4300_Get_Index(local_x, local_y-inc, -1, 3);
+    %                 KB = CS4300_Tell(KB, sentence2);
+                    if(frontier(CS4300_conversion(local_y-inc), local_x) == 1)
+                       board(CS4300_conversion(local_y-inc), local_x) = 0; 
+                    end
+               end
+            end        
         end
     end
-    if(local_dir == 1)
-        for inc = 1:3
-           if(local_y+inc <= 4)
-%                sentence2(1).clauses = CS4300_Get_Index(local_x, local_y+inc, -1, 3);
-%                 KB = CS4300_Tell(KB, sentence2);
-                if(frontier(CS4300_conversion(local_y+inc), local_x) == 1)
-                    board(CS4300_conversion(local_y+inc), local_x) = 0;
-                end
-           end
-        end
-    end
-    if(local_dir == 2)
-        for inc = 1:3
-           if(local_x-inc >= 0)
-%                sentence2(1).clauses = CS4300_Get_Index(local_x-inc, local_y, -1, 3);
-%                 KB = CS4300_Tell(KB, sentence2);
-                if(frontier(CS4300_conversion(local_y), local_x-inc) == 1)
-                    board(CS4300_conversion(local_y), local_x-inc) = 0;
-                end
-           end
-        end
-    end
-    if(local_dir == 3)
-        for inc = 1:3
-           if(local_y-inc >= 0)
-%                sentence2(1).clauses = CS4300_Get_Index(local_x, local_y-inc, -1, 3);
-%                 KB = CS4300_Tell(KB, sentence2);
-                if(frontier(CS4300_conversion(local_y-inc), local_x) == 1)
-                   board(CS4300_conversion(local_y-inc), local_x) = 0; 
-                end
-           end
-        end        
-    end
-    
 end
 
     
@@ -182,7 +189,7 @@ board = CS4300_safe(local_x,local_y,KB,board);
 %On glitter
 
 sentence1(1).clauses = CS4300_Get_Index(local_x,local_y,1,4);
-if(CS4300_Ask(KB,sentence1))
+if(CS4300_Ask(KB,sentence1) || percept(3) == 1)
    plan.add(GRAB);
    temp_plan = CS4300_Plan_Route([local_x, local_y, local_dir], [1,1,0], board);
    for temp_index = 1:length(temp_plan)
@@ -192,26 +199,27 @@ if(CS4300_Ask(KB,sentence1))
 end
 
 found = 0;
-
+random_index2 = 1;
 %Go to safe square
 if(plan.isEmpty()) % check to see if it is safe and if it is, navigates to it
     for i = 1:length(board)
-        if(found == 1)
-            break;
-        end
         for j = 1:length(board)
             if(board(i, j) == 0)
                 if(visited(i, j) == 0)
-                    tempy = i;
-                    tempx = j;
+                    random3(random_index2).square = [i,j];
+                    random_index2 = random_index2 + 1;
                     found = 1;
-                    break;
                 end
             end
         end
     end
    
    if(found == 1)
+       p = randi([1, random_index2-1]);
+   
+       tempy = random3(p).square(1);
+       tempx = random3(p).square(2);
+       
        tempyc = CS4300_conversion(tempy);
        temp_plan = CS4300_Plan_Route([local_x, local_y, local_dir], [tempx,tempyc,0], board);
        for temp_index = 1:length(temp_plan)
@@ -319,7 +327,7 @@ if(plan.isEmpty())
    
 end
 
-action = plan.poll()
+action = plan.poll();
 
 if(action == 5)
         
