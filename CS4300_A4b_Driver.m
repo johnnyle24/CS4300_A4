@@ -36,4 +36,4 @@ board2 = [0,0,0,1;...
     0,0,1,0];
 
 board3 = [0,0,0,0;0,0,0,0;3,2,0,0;0,1,0,0];
-[score,trace] = CS4300_WW1(max_steps,'CS4300_Hybrid_Wumpus_Agent',board3);
+[score,trace] = CS4300_WW1(max_steps,'CS4300_Hybrid_Wumpus_Agent',board1);

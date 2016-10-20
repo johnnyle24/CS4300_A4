@@ -78,6 +78,7 @@ while step<max_steps&done==0
     if agent.alive==0|agent.succeed==1|agent.climbed==1
         if(agent.alive == 0)
             score = score - 1000;
+        end
         done = 1;
     end
 end
