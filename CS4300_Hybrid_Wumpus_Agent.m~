@@ -156,7 +156,7 @@ if(isempty(plan) && haveArrow == 1)
         end
     end
     
-    temp_plan = CS4300_Plan_Shot([local_x, local_y, local_dir], [tempx,tempy,0], board);
+    temp_plan = CS4300_Plan_Route([local_x, local_y, local_dir], [tempx,tempy,0], board);
     
     for temp_index = 1:length(temp_plan)
        plan.add(temp_plan(temp_index).p); 

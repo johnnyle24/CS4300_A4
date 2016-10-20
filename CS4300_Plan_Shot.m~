@@ -1,4 +1,4 @@
-function plan = CS4300_Plan_Route(current,target,safe)
+function plan = CS4300_Plan_Shot(current,target,safe)
 %Given x, y return the stench index
 %Pits [1,16]
 %Breeze [17,32]
@@ -22,6 +22,8 @@ goal_state = zeros(1,3);
 goal_state(1) = target(1);
 goal_state(2) = target(2);
 goal_state(3) = 0;
+
+
 
 [sol,nod] = CS4300_Wumpus_A_star_safe(safe,initial_state,goal_state,'CS4300_A_star_Man',safe);
 
