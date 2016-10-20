@@ -42,8 +42,7 @@ GRAB = 4;
 SHOOT = 5;
 CLIMB = 6;
 
-global actual_board;
-actual_board = board;
+
 
 while step<max_steps&done==0
     step = step + 1;
@@ -64,18 +63,22 @@ while step<max_steps&done==0
         case 6
             score = score + 1000;
             agent.gold = 1;
+    end
     
     [board,agent,bumped,screamed] = CS4300_update(board,agent,action);
     
     %update agent status
-    local_x = agent.x;
-    local_y = agent.y;
-    local_dir = agent.dir;
+    setGlobalx(agent.x);
+    setGlobaly(agent.y);
+    setGlobaldir(agent.dir);
     
     trace(step+1).agent = agent;
     trace(step+1).board = board;
     trace(step+1).action = action;
     if agent.alive==0|agent.succeed==1|agent.climbed==1
+        if(agent.alive == 0)
+            score = score - 1000;
         done = 1;
     end
+end
 end

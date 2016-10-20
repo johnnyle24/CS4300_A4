@@ -24,17 +24,17 @@ new_frontier = frontier;
 
     %Initialize KB for breezes and pits
 
-    if(y+1 <= 4 && visited(x, y+1) == 0)
-        new_frontier(x, y+1) = 1;
+    if(y+1 <= 4 && visited(CS4300_conversion(y+1), x) == 0)
+        new_frontier(CS4300_conversion(y+1), x) = 1;
     end
-    if(y-1 > 0 && visited(x, y-1) == 0)
-        new_frontier(x, y-1) = 1;
+    if(y-1 > 0 && visited(CS4300_conversion(y-1), x) == 0)
+        new_frontier(CS4300_conversion(y-1), x) = 1;
     end
-    if(x+1 <= 4 && visited(x+1, y) == 0)
-        new_frontier(x+1, y) = 1;
+    if(x+1 <= 4 && visited(CS4300_conversion(y), x+1) == 0)
+        new_frontier(CS4300_conversion(y),x+1) = 1;
     end
-    if(x-1 > 0 && visited(x-1, y) == 0)
-        new_frontier(x-1, y) = 1;
+    if(x-1 > 0 && visited(CS4300_conversion(y), x-1) == 0)
+        new_frontier(CS4300_conversion(y), x-1) = 1;
     end
 
 

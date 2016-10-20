@@ -78,7 +78,7 @@ while 1==1
             & CS4300_Wumpus_new_state(next_state,frontier,explored,...
                 nodes)
             
-            if(safe(tempy,tempx) == 0)
+            if(safe(tempy,tempx) == 0)% == 0 || (tempx == goal_state(1) && tempy == goal_state(2)))
                 num_nodes = num_nodes + 1;
                 nodes(num_nodes).parent = node;
                 nodes(num_nodes).level = nodes(node).level + 1;

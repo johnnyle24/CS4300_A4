@@ -26,8 +26,8 @@ KB(3).clauses = [-66]; %no gold in 1,1
 kb_counter = 4;
 
 %Initialize KB for breezes and pits
-for y = 1:4
-    for x = 1:4
+for y = 1:3
+    for x = 1:3
         c1 = CS4300_Get_Index(x,y,1,1);
         c2_counter = 1;
         c2 = [];
@@ -51,7 +51,7 @@ for y = 1:4
         res = CS4300_Convert_Imply_To_CNF(c1,c2);
         
         for i = 1:length(res)
-            KB(kb_counter).clauses = res(i);
+            KB(kb_counter).clauses = res(i).clauses;
             kb_counter = kb_counter + 1;
         end
     end
@@ -83,7 +83,7 @@ for y = 1:4
         res = CS4300_Convert_Imply_To_CNF(c1,c2);
         
         for i = 1:length(res)
-            KB(kb_counter).clauses = res(i);
+            KB(kb_counter).clauses = res(i).clauses;
             kb_counter = kb_counter + 1;
         end
     end
